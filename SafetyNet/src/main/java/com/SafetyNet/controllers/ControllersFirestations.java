@@ -46,7 +46,6 @@ public class ControllersFirestations {
 	
 	@DeleteMapping("/firestation")
 	public SafetyNetModel deleteFirestation(@RequestParam String address) {
-		//http://localhost:8080/person?firstName=John&lastName=Boyd
 		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		
 		List<Firestations> listFirestation = safetyModel.getFirestations();
@@ -61,7 +60,7 @@ public class ControllersFirestations {
 	        }
 		 
 		 listFirestation.remove(j);
-		 safetyModel.setFirestations(listFirestation);
+		 
 
 	    return safetyModel;
 	}

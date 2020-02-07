@@ -2,7 +2,9 @@ package com.SafetyNet.models;
 
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 
+@ManagedBean
 public class SafetyNetModel {
 	
 	
@@ -25,25 +27,19 @@ public class SafetyNetModel {
 		return persons;
 	}
 
-	public void setPersons(List<Persons> persons) {
-		this.persons = persons;
-	}
+	
 
 	public List<Medicalrecords> getMedicalrecords() {
 		return medicalrecords;
 	}
 
-	public void setMedicalrecords(List<Medicalrecords> medicalrecords) {
-		this.medicalrecords = medicalrecords;
-	}
+	
 
 	public List<Firestations> getFirestations() {
 		return firestations;
 	}
 
-	public void setFirestations(List<Firestations> firestations) {
-		this.firestations = firestations;
-	}
+	
 
 	@Override
 	public String toString() {

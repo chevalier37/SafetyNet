@@ -48,7 +48,6 @@ public class ControllersMedicalRecord {
 		
 		@DeleteMapping("/medicalRecord")
 		public SafetyNetModel deleteMedicalRecord(@RequestParam String firstName, @RequestParam String lastName) {
-			//http://localhost:8080/medicalRecord?firstName=John&lastName=Boyd
 			SafetyNetModel safetyModel = SafetyNetApplication.model;
 			
 			List<Medicalrecords> listMedicalRecord = safetyModel.getMedicalrecords();
