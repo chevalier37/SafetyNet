@@ -1,11 +1,19 @@
 package com.SafetyNet.models;
 
-
 public class Firestations {
-	
+
 	private String address;
-	
+
 	private String station;
+
+	public Firestations() {
+	}
+
+	public Firestations(String address, String station) {
+		super();
+		this.address = address;
+		this.station = station;
+	}
 
 	public String getAddress() {
 		return address;
@@ -27,5 +35,5 @@ public class Firestations {
 	public String toString() {
 		return "Firestations [address=" + address + ", station=" + station + "]";
 	}
-	
+
 }

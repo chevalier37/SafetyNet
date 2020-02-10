@@ -3,17 +3,28 @@ package com.SafetyNet.models;
 import java.util.Arrays;
 
 public class Medicalrecords {
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String birthdate;
-	
+
 	private String[] medications;
-	
+
 	private String[] allergies;
 
+	public Medicalrecords() {
+	}
+
+	public Medicalrecords(String firstName, String lastName, String birthdate, String[] medications,
+			String[] allergies) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthdate = birthdate;
+		this.medications = medications;
+		this.allergies = allergies;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -57,9 +68,8 @@ public class Medicalrecords {
 
 	@Override
 	public String toString() {
-		return "Medicalrecords [firstName=" + firstName + ", lastName=" + lastName + ", birthdate="
-				+ birthdate + ", medications=" + Arrays.toString(medications) + ", allergies="
-				+ Arrays.toString(allergies) + "]";
+		return "Medicalrecords [firstName=" + firstName + ", lastName=" + lastName + ", birthdate=" + birthdate
+				+ ", medications=" + Arrays.toString(medications) + ", allergies=" + Arrays.toString(allergies) + "]";
 	}
-	
+
 }
