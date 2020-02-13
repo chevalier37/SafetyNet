@@ -5,18 +5,17 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.SafetyNet.SafetyNetApplication;
 import com.SafetyNet.models.Firestations;
 import com.SafetyNet.models.SafetyNetModel;
 
-@RestController
+@Controller
 public class ControllersFirestations {
 
 	@Autowired
@@ -26,18 +25,17 @@ public class ControllersFirestations {
 
 	@PostMapping("/firestation")
 	public SafetyNetModel addPersonn(@RequestBody Firestations firestation) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		safetyModel.getFirestations().add(firestation);
 
 		logger.info("Request = @PostMapping(\"/firestation\") + @RequestBody = " + firestation);
 		logger.info("Response " + safetyModel);
 
 		return safetyModel;
+
 	}
 
 	@PutMapping("/firestation")
 	public SafetyNetModel updatePerson(@RequestBody Firestations firestation) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		String address = firestation.getAddress();
 
 		List<Firestations> listFirestation = safetyModel.getFirestations();
@@ -56,7 +54,6 @@ public class ControllersFirestations {
 
 	@DeleteMapping("/firestation")
 	public SafetyNetModel deleteFirestation(@RequestParam String address) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Firestations> listFirestation = safetyModel.getFirestations();
 

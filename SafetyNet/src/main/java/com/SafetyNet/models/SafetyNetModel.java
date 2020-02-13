@@ -2,21 +2,17 @@ package com.SafetyNet.models;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
-
-@ManagedBean
 public class SafetyNetModel {
-	
-	
+
 	private List<Persons> persons;
-	
+
 	private List<Firestations> firestations;
-	
+
 	private List<Medicalrecords> medicalrecords;
-	
+
 	public SafetyNetModel() {
 	}
-	
+
 	public SafetyNetModel(List<Persons> persons, List<Firestations> firestations, List<Medicalrecords> medicalrecords) {
 		this.persons = persons;
 		this.firestations = firestations;
@@ -27,24 +23,18 @@ public class SafetyNetModel {
 		return persons;
 	}
 
-	
-
 	public List<Medicalrecords> getMedicalrecords() {
 		return medicalrecords;
 	}
-
-	
 
 	public List<Firestations> getFirestations() {
 		return firestations;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "SafetyNetModel [persons=" + persons + ", medicalrecord=" + medicalrecords + ", firestations=" + firestations
-				+ "]";
+		return "SafetyNetModel [persons=" + persons + ", medicalrecord=" + medicalrecords + ", firestations="
+				+ firestations + "]";
 	}
-	
+
 }

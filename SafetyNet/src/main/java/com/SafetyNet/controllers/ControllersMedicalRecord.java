@@ -4,26 +4,28 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.SafetyNet.SafetyNetApplication;
 import com.SafetyNet.models.Medicalrecords;
 import com.SafetyNet.models.SafetyNetModel;
 
-@RestController
+@Controller
 public class ControllersMedicalRecord {
 
 	private static final Logger logger = LogManager.getRootLogger();
 
+	@Autowired
+	SafetyNetModel safetyModel;
+
 	@PostMapping("/medicalRecord")
 	public SafetyNetModel addMedicalRecord(@RequestBody Medicalrecords medicalRecord) {
 
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		safetyModel.getMedicalrecords().add(medicalRecord);
 
 		logger.info("Request = @PostMapping(\"/medicalRecord\" + @RequestBody = " + medicalRecord);
@@ -34,7 +36,6 @@ public class ControllersMedicalRecord {
 
 	@PutMapping("/medicalRecord")
 	public SafetyNetModel updateMedicalRecord(@RequestBody Medicalrecords medicalRecord) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		String firstname = medicalRecord.getFirstName();
 		String lastName = medicalRecord.getLastName();
 
@@ -57,7 +58,6 @@ public class ControllersMedicalRecord {
 
 	@DeleteMapping("/medicalRecord")
 	public SafetyNetModel deleteMedicalRecord(@RequestParam String firstName, @RequestParam String lastName) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Medicalrecords> listMedicalRecord = safetyModel.getMedicalrecords();
 

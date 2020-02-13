@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.SafetyNet.SafetyNetApplication;
 import com.SafetyNet.business.Age;
 import com.SafetyNet.business.AlertBusiness;
 import com.SafetyNet.business.Enfants;
@@ -29,9 +29,11 @@ public class ControllersURLS {
 
 	private static final Logger logger = LogManager.getRootLogger();
 
+	@Autowired
+	SafetyNetModel safetyModel;
+
 	@GetMapping("/firestation")
 	public ListPersonStation stationNumber(@RequestParam String stationNumber) throws ParseException {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Firestations> listFirestations = safetyModel.getFirestations();
 		List<Persons> listPersons = safetyModel.getPersons();
@@ -52,7 +54,6 @@ public class ControllersURLS {
 
 	@GetMapping("/childAlert")
 	public List<Enfants> childAlert(@RequestParam String address) throws ParseException {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 		List<Medicalrecords> listMedicalRecords = safetyModel.getMedicalrecords();
@@ -65,7 +66,6 @@ public class ControllersURLS {
 
 	@GetMapping("/phoneAlert")
 	public List<String> phoneAlert(@RequestParam String firestation) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 		List<Firestations> listFirestations = safetyModel.getFirestations();
@@ -78,7 +78,6 @@ public class ControllersURLS {
 
 	@GetMapping("/fire")
 	public List<Habitant> fire(@RequestParam String address) throws ParseException {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 		List<Firestations> listFirestations = safetyModel.getFirestations();
@@ -93,7 +92,6 @@ public class ControllersURLS {
 
 	@GetMapping("/flood/stations")
 	public List<Habitant> flood(@RequestParam String stations) throws ParseException {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 		List<Firestations> listFirestations = safetyModel.getFirestations();
@@ -108,7 +106,6 @@ public class ControllersURLS {
 
 	@GetMapping("/personInfo")
 	public List<PersonInfo> personInfo(@RequestParam String firstName, String lastName) throws ParseException {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 		List<Medicalrecords> listMedicalRecords = safetyModel.getMedicalrecords();
@@ -121,7 +118,6 @@ public class ControllersURLS {
 
 	@GetMapping("/communityEmail")
 	public List<String> communityEmail(@RequestParam String city) throws ParseException {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 

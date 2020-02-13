@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.SafetyNet.SafetyNetApplication;
 import com.SafetyNet.models.Persons;
 import com.SafetyNet.models.SafetyNetModel;
 
@@ -20,10 +20,12 @@ public class ControllersPerson {
 
 	private static final Logger logger = LogManager.getRootLogger();
 
+	@Autowired
+	SafetyNetModel safetyModel;
+
 	@PostMapping("/person")
 	public SafetyNetModel addPersonn(@RequestBody Persons persons) {
 
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		safetyModel.getPersons().add(persons);
 
 		logger.info("Request = @PostMapping(\"/person\" + @RequestBody = " + persons);
@@ -34,7 +36,6 @@ public class ControllersPerson {
 
 	@PutMapping("/person")
 	public SafetyNetModel updatePerson(@RequestBody Persons persons) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 		String firstname = persons.getFirstName();
 		String lastName = persons.getLastName();
 
@@ -58,7 +59,6 @@ public class ControllersPerson {
 
 	@DeleteMapping("/person")
 	public SafetyNetModel deletePerson(@RequestParam String firstName, @RequestParam String lastName) {
-		SafetyNetModel safetyModel = SafetyNetApplication.model;
 
 		List<Persons> listPersons = safetyModel.getPersons();
 
