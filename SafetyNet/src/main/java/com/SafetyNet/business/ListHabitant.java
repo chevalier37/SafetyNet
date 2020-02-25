@@ -13,11 +13,14 @@ import com.SafetyNet.models.Persons;
 
 public class ListHabitant {
 
+	private ListHabitant() {
+	}
+
 	private static final Logger logger = LogManager.getRootLogger();
 
 	public static List<Habitant> listHabitant(List<Persons> listPersons, List<Medicalrecords> listMedicalRecords,
 			List<Firestations> listFirestations, String address) throws ParseException {
-		List<Habitant> listHabitants = new ArrayList<Habitant>();
+		List<Habitant> listHabitants = new ArrayList<>();
 
 		for (Persons person : listPersons) {
 			if (person.getAddress().equals(address)) {
@@ -43,13 +46,13 @@ public class ListHabitant {
 				}
 			}
 		}
-		logger.debug("listHabitants = " + listHabitants);
+		logger.debug("listHabitants = {}", listHabitants);
 		return listHabitants;
 	}
 
 	public static List<Habitant> listHabitantStation(List<Persons> listPersons, List<Medicalrecords> listMedicalRecords,
 			List<Firestations> listFirestations, String stations) throws ParseException {
-		List<Habitant> listHabitants = new ArrayList<Habitant>();
+		List<Habitant> listHabitants = new ArrayList<>();
 
 		for (Firestations fire : listFirestations) {
 			if (fire.getStation().equals(stations)) {
@@ -77,7 +80,7 @@ public class ListHabitant {
 			}
 		}
 
-		List<Habitant> listFoyer = new ArrayList<Habitant>();
+		List<Habitant> listFoyer = new ArrayList<>();
 
 		for (int i = 0; i < listHabitants.size(); i++) {
 			for (int j = 0; j < listHabitants.size(); j++) {
@@ -88,7 +91,7 @@ public class ListHabitant {
 				}
 			}
 		}
-		logger.debug("listFoyer = " + listFoyer);
+		logger.debug("listFoyer = {}", listFoyer);
 		return listFoyer;
 	}
 

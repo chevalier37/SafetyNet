@@ -10,18 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.SafetyNet.business.Habitant;
+import com.SafetyNet.business.ListHabitant;
 import com.SafetyNet.models.Firestations;
 import com.SafetyNet.models.Medicalrecords;
 import com.SafetyNet.models.Persons;
-import com.safetynet.business.Habitant;
-import com.safetynet.business.ListHabitant;
 
 @SpringBootTest
 public class ListHabitantTest {
 
-	List<Persons> listPersonsTest = ListTest.listPersonTest();
-	List<Firestations> listFirestationsTest = ListTest.listFirestationTest();
-	List<Medicalrecords> listMedicalrecordsTest = ListTest.listMedicalRecordTest();
+	List<Persons> listPersonsTest = ListTesting.listPersonTest();
+	List<Firestations> listFirestationsTest = ListTesting.listFirestationTest();
+	List<Medicalrecords> listMedicalrecordsTest = ListTesting.listMedicalRecordTest();
 	String address = "900 Culver St";
 
 	@Test

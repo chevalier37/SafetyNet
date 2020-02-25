@@ -10,18 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.SafetyNet.business.ListPersonInfo;
+import com.SafetyNet.business.PersonInfo;
 import com.SafetyNet.models.Firestations;
 import com.SafetyNet.models.Medicalrecords;
 import com.SafetyNet.models.Persons;
-import com.safetynet.business.ListPersonInfo;
-import com.safetynet.business.PersonInfo;
 
 @SpringBootTest
 public class ListFoyer {
 
-	List<Persons> listPersonsTest = ListTest.listPersonTest();
-	List<Firestations> listFirestationsTest = ListTest.listFirestationTest();
-	List<Medicalrecords> listMedicalrecordsTest = ListTest.listMedicalRecordTest();
+	List<Persons> listPersonsTest = ListTesting.listPersonTest();
+	List<Firestations> listFirestationsTest = ListTesting.listFirestationTest();
+	List<Medicalrecords> listMedicalrecordsTest = ListTesting.listMedicalRecordTest();
 
 	@Test
 	@DisplayName("List foyer Test")

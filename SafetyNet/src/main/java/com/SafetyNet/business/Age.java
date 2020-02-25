@@ -14,8 +14,14 @@ import com.SafetyNet.models.Persons;
 
 public class Age {
 
+	private Age() {
+
+	}
+
 	private static Calendar today = Calendar.getInstance();
-	private static final Logger logger = LogManager.getRootLogger();
+	private static Logger logger = LogManager.getRootLogger();
+	private static Calendar birthDay = Calendar.getInstance();
+	private static final String formatDate = "MM/dd/yyyy";
 
 	public static boolean isAdult(String birthD) throws ParseException {
 		int yearDiff = yearDiff(birthD);
@@ -23,10 +29,10 @@ public class Age {
 		int dayDiff = dayDiff(birthD);
 
 		if (yearDiff > 18 || yearDiff == 18 && monthDiff >= 0 || yearDiff == 18 && monthDiff == 0 && dayDiff >= 0) {
-			logger.debug("isAdult = " + true);
+			logger.debug("isAdult = {}", true);
 			return true;
 		} else {
-			logger.debug("isAdult = " + false);
+			logger.debug("isAdult =  {}", false);
 			return false;
 		}
 	}
@@ -37,16 +43,16 @@ public class Age {
 		int dayDiff = dayDiff(birthD);
 
 		if (monthDiff > 0 || (monthDiff == 0 && dayDiff >= 0)) {
-			logger.debug("year = " + yearDiff);
+			logger.debug("year =  {}", yearDiff);
 			return yearDiff;
 		} else {
-			logger.debug("year = " + (yearDiff - 1));
+			logger.debug("year =  {}", (yearDiff - 1));
 			return yearDiff - 1;
 		}
 
 	}
 
-	public static int NbrAdult(List<Persons> listPersonStations, List<Medicalrecords> listMedicalRecords)
+	public static int nbrAdult(List<Persons> listPersonStations, List<Medicalrecords> listMedicalRecords)
 			throws ParseException {
 		int nbAdultes = 0;
 		for (Persons personStation : listPersonStations) {
@@ -59,27 +65,24 @@ public class Age {
 				}
 			}
 		}
-		logger.debug("nbrAdultes = " + nbAdultes);
+		logger.debug("nbrAdultes =  {}", nbAdultes);
 		return nbAdultes;
 	}
 
 	private static int yearDiff(String birthD) throws ParseException {
-		Calendar birthDay = Calendar.getInstance();
-		Date birth = new SimpleDateFormat("MM/dd/yyyy").parse(birthD);
+		Date birth = new SimpleDateFormat(formatDate).parse(birthD);
 		birthDay.setTime(birth);
 		return today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
 	}
 
 	private static int monthDiff(String birthD) throws ParseException {
-		Calendar birthDay = Calendar.getInstance();
-		Date birth = new SimpleDateFormat("MM/dd/yyyy").parse(birthD);
+		Date birth = new SimpleDateFormat(formatDate).parse(birthD);
 		birthDay.setTime(birth);
 		return today.MONTH - birthDay.MONTH;
 	}
 
 	private static int dayDiff(String birthD) throws ParseException {
-		Calendar birthDay = Calendar.getInstance();
-		Date birth = new SimpleDateFormat("MM/dd/yyyy").parse(birthD);
+		Date birth = new SimpleDateFormat(formatDate).parse(birthD);
 		birthDay.setTime(birth);
 		return today.DAY_OF_MONTH - birthDay.DAY_OF_MONTH;
 	}

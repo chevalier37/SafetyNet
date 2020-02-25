@@ -11,14 +11,17 @@ import com.SafetyNet.models.Persons;
 
 public class FirestationBusiness {
 
+	private FirestationBusiness() {
+	}
+
 	private static final Logger logger = LogManager.getRootLogger();
 
 	public static List<Persons> listPersonStations(List<Persons> listPersons, List<Firestations> listFirestation,
 			String stationNumber) {
 
-		List<Persons> listPersonStations = new ArrayList<Persons>();
+		List<Persons> listPersonStations = new ArrayList<>();
 
-		List<Firestations> listStationNumber = new ArrayList<Firestations>();
+		List<Firestations> listStationNumber = new ArrayList<>();
 
 		for (Firestations fire : listFirestation) {
 			if (fire.getStation().equals(stationNumber)) {
@@ -32,7 +35,7 @@ public class FirestationBusiness {
 				}
 			}
 		}
-		logger.debug("listPersonStations = " + listPersonStations);
+		logger.debug("listPersonStations = {}", listPersonStations);
 		return listPersonStations;
 	}
 

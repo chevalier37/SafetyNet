@@ -13,7 +13,6 @@ public class Habitant {
 
 	public Habitant(String firstName, String lastName, String phone, int age, String[] medications, String[] allergie,
 			String station, String address) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;

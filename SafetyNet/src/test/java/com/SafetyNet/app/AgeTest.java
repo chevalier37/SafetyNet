@@ -3,15 +3,23 @@ package com.SafetyNet.app;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.safetynet.business.Age;
+import com.SafetyNet.business.Age;
+import com.SafetyNet.models.Firestations;
+import com.SafetyNet.models.Medicalrecords;
+import com.SafetyNet.models.Persons;
 
 @SpringBootTest
 public class AgeTest {
+
+	List<Persons> listPersonsTest = ListTesting.listPersonTest();
+	List<Firestations> listFirestationsTest = ListTesting.listFirestationTest();
+	List<Medicalrecords> listMedicalrecordsTest = ListTesting.listMedicalRecordTest();
 
 	@Test
 	@DisplayName("calcul age")
@@ -25,6 +33,16 @@ public class AgeTest {
 	public void isMajeurTest() throws ParseException {
 		boolean isMajeur = Age.isAdult("01/01/2000");
 		assertEquals(true, isMajeur);
+	}
+
+	@Test
+	@DisplayName("Nombre adultes")
+	public void nbrAdult() throws ParseException {
+
+		int nbradult = Age.nbrAdult(listPersonsTest, listMedicalrecordsTest);
+		int nbradultExpected = 2;
+
+		assertEquals(nbradult, nbradultExpected);
 	}
 
 	/*

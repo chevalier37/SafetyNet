@@ -13,12 +13,15 @@ import com.SafetyNet.models.Persons;
 
 public class AlertBusiness {
 
+	private AlertBusiness() {
+	}
+
 	private static final Logger logger = LogManager.getRootLogger();
 
 	public static List<Enfants> childAlert(List<Persons> listPersons, List<Medicalrecords> listMedicalRecords,
 			String address) throws ParseException {
-		List<Enfants> listChild = new ArrayList<Enfants>();
-		List<Persons> listpersonAdrress = new ArrayList<Persons>();
+		List<Enfants> listChild = new ArrayList<>();
+		List<Persons> listpersonAdrress = new ArrayList<>();
 
 		for (Persons person : listPersons) {
 			if (person.getAddress().equals(address)) {
@@ -36,13 +39,13 @@ public class AlertBusiness {
 				}
 			}
 		}
-		logger.debug("listChild = " + listChild);
+		logger.debug("listChild = {}", listChild);
 		return listChild;
 	}
 
 	public static List<String> phoneAlert(List<Firestations> listFirestations, List<Persons> listPersons,
 			String firestation) {
-		List<String> listphoneNumber = new ArrayList<String>();
+		List<String> listphoneNumber = new ArrayList<>();
 
 		for (Firestations fire : listFirestations) {
 			if (fire.getStation().equals(firestation)) {
@@ -54,7 +57,7 @@ public class AlertBusiness {
 				}
 			}
 		}
-		logger.debug("listphoneNumber = " + listphoneNumber);
+		logger.debug("listphoneNumber = {}", listphoneNumber);
 		return listphoneNumber;
 	}
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.SafetyNet.models.Medicalrecords;
 import com.SafetyNet.models.SafetyNetModel;
@@ -24,17 +25,19 @@ public class ControllersMedicalRecord {
 	SafetyNetModel safetyModel;
 
 	@PostMapping("/medicalRecord")
+	@ResponseBody
 	public SafetyNetModel addMedicalRecord(@RequestBody Medicalrecords medicalRecord) {
 
 		safetyModel.getMedicalrecords().add(medicalRecord);
 
-		logger.info("Request = @PostMapping(\"/medicalRecord\" + @RequestBody = " + medicalRecord);
-		logger.info("Response " + safetyModel);
+		logger.info("Request = @PostMapping(\"/medicalRecord\" + @RequestBody = {}", medicalRecord);
+		logger.info("Response = {}", safetyModel);
 
 		return safetyModel;
 	}
 
 	@PutMapping("/medicalRecord")
+	@ResponseBody
 	public SafetyNetModel updateMedicalRecord(@RequestBody Medicalrecords medicalRecord) {
 		String firstname = medicalRecord.getFirstName();
 		String lastName = medicalRecord.getLastName();
@@ -50,13 +53,14 @@ public class ControllersMedicalRecord {
 			}
 		}
 
-		logger.info("Request = @PutMapping(\"/medicalRecord\" + @RequestBody = " + medicalRecord);
-		logger.info("Response " + safetyModel);
+		logger.info("Request = @PutMapping(\"/medicalRecord\" + @RequestBody = {}", medicalRecord);
+		logger.info("Response {}", safetyModel);
 
 		return safetyModel;
 	}
 
 	@DeleteMapping("/medicalRecord")
+	@ResponseBody
 	public SafetyNetModel deleteMedicalRecord(@RequestParam String firstName, @RequestParam String lastName) {
 
 		List<Medicalrecords> listMedicalRecord = safetyModel.getMedicalrecords();
@@ -72,8 +76,8 @@ public class ControllersMedicalRecord {
 
 		listMedicalRecord.remove(j);
 
-		logger.info("Request = @DeleteMapping(\"/medicalRecord\" + @RequestParam = " + firstName + "lastName");
-		logger.info("Response " + safetyModel);
+		logger.info("Request = @DeleteMapping(\"/medicalRecord\" + @RequestParam = {} + {}", firstName, lastName);
+		logger.info("Response {}", safetyModel);
 
 		return safetyModel;
 	}

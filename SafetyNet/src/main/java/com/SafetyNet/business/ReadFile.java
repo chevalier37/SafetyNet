@@ -4,15 +4,16 @@ import java.io.File;
 import java.io.IOException;
 
 import com.SafetyNet.models.SafetyNetModel;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ReadFile {
 
+	private ReadFile() {
+	}
+
 	static String file = "/Users/jean-benoitroussat/desktop/open_classroom/projet_5/data.json";
 
-	public static SafetyNetModel readFile() throws JsonParseException, JsonMappingException, IOException {
+	public static SafetyNetModel readFile() throws IOException {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 

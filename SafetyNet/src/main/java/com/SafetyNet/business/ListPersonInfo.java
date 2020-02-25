@@ -12,11 +12,14 @@ import com.SafetyNet.models.Persons;
 
 public class ListPersonInfo {
 
+	private ListPersonInfo() {
+	}
+
 	private static final Logger logger = LogManager.getRootLogger();
 
 	public static List<PersonInfo> listPersoninfo(List<Persons> listPersons, List<Medicalrecords> listMedicalRecords,
 			String firstName, String lastName) throws ParseException {
-		List<PersonInfo> listInfo = new ArrayList<PersonInfo>();
+		List<PersonInfo> listInfo = new ArrayList<>();
 
 		for (Persons person : listPersons) {
 			if (person.getLastName().equals(lastName) && person.getFirstName().equals(firstName)) {
@@ -37,7 +40,7 @@ public class ListPersonInfo {
 				}
 			}
 		}
-		logger.debug("listInfo = " + listInfo);
+		logger.debug("listInfo = {}", listInfo);
 		return listInfo;
 	}
 
@@ -50,7 +53,7 @@ public class ListPersonInfo {
 				listEmail.add(mail);
 			}
 		}
-		logger.debug("listEmail = " + listEmail);
+		logger.debug("listEmail = {}", listEmail);
 		return listEmail;
 	}
 }

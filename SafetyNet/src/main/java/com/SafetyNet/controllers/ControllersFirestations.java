@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.SafetyNet.models.Firestations;
 import com.SafetyNet.models.SafetyNetModel;
@@ -24,17 +25,19 @@ public class ControllersFirestations {
 	private static final Logger logger = LogManager.getRootLogger();
 
 	@PostMapping("/firestation")
+	@ResponseBody
 	public SafetyNetModel addPersonn(@RequestBody Firestations firestation) {
 		safetyModel.getFirestations().add(firestation);
 
-		logger.info("Request = @PostMapping(\"/firestation\") + @RequestBody = " + firestation);
-		logger.info("Response " + safetyModel);
+		logger.info("Request = @PostMapping(\"/firestation\") + @RequestBody = {}", firestation);
+		logger.info("Response = {}", safetyModel);
 
 		return safetyModel;
 
 	}
 
 	@PutMapping("/firestation")
+	@ResponseBody
 	public SafetyNetModel updatePerson(@RequestBody Firestations firestation) {
 		String address = firestation.getAddress();
 
@@ -46,13 +49,14 @@ public class ControllersFirestations {
 			}
 		}
 
-		logger.info("Request = @PutMapping(\"/firestation\") + @RequestBody = " + firestation);
-		logger.info("Response " + safetyModel);
+		logger.info("Request = @PutMapping(\"/firestation\") + @RequestBody = {}", firestation);
+		logger.info("Response {}", safetyModel);
 
 		return safetyModel;
 	}
 
 	@DeleteMapping("/firestation")
+	@ResponseBody
 	public SafetyNetModel deleteFirestation(@RequestParam String address) {
 
 		List<Firestations> listFirestation = safetyModel.getFirestations();
@@ -68,8 +72,8 @@ public class ControllersFirestations {
 
 		listFirestation.remove(j);
 
-		logger.info("Request = @DeleteMapping(\"/firestation\") + @RequestParam = " + address);
-		logger.info("Response " + safetyModel);
+		logger.info("Request = @DeleteMapping(\"/firestation\") + @RequestParam = {}", address);
+		logger.info("Response {}", safetyModel);
 
 		return safetyModel;
 	}

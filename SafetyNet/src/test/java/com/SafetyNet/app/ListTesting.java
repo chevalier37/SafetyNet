@@ -7,7 +7,10 @@ import com.SafetyNet.models.Firestations;
 import com.SafetyNet.models.Medicalrecords;
 import com.SafetyNet.models.Persons;
 
-public class ListTest {
+public class ListTesting {
+
+	private ListTesting() {
+	}
 
 	public static List<Persons> listPersonTest() {
 
@@ -18,7 +21,7 @@ public class ListTest {
 		Persons person3 = new Persons("John3", "Boyd3", "900 Culver St", "Culver", "97451", "888-874-6512",
 				"jaboyd3@email.com");
 
-		List<Persons> listPersonTest = new ArrayList<Persons>();
+		List<Persons> listPersonTest = new ArrayList<>();
 		listPersonTest.add(person1);
 		listPersonTest.add(person2);
 		listPersonTest.add(person3);
@@ -31,7 +34,7 @@ public class ListTest {
 		Firestations fireStation1 = new Firestations("1509 Culver St", "1");
 		Firestations fireStation2 = new Firestations("900 Culver St", "2");
 
-		List<Firestations> listFirestationsTest = new ArrayList<Firestations>();
+		List<Firestations> listFirestationsTest = new ArrayList<>();
 		listFirestationsTest.add(fireStation1);
 		listFirestationsTest.add(fireStation2);
 
@@ -47,7 +50,7 @@ public class ListTest {
 		Medicalrecords Medicalrecords2 = new Medicalrecords("John2", "Boyd2", "03/06/1990", medications, allergies);
 		Medicalrecords Medicalrecords3 = new Medicalrecords("John3", "Boyd3", "01/01/2010", medications, allergies);
 
-		List<Medicalrecords> listMedicalrecordsTest = new ArrayList<Medicalrecords>();
+		List<Medicalrecords> listMedicalrecordsTest = new ArrayList<>();
 		listMedicalrecordsTest.add(Medicalrecords1);
 		listMedicalrecordsTest.add(Medicalrecords2);
 		listMedicalrecordsTest.add(Medicalrecords3);
