@@ -11,7 +11,7 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
         
-        <RollingFile name="RollingFileAppender" fileName="logs/app.log"
+        <!-- <RollingFile name="RollingFileAppender" fileName="logs/app.log"
       filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
  	        <PatternLayout>
  	            <Pattern>%d [%t] %p %c - %m%n</Pattern>
@@ -22,17 +22,17 @@
  	            <SizeBasedTriggeringPolicy size="50 MB" />
  	        </Policies>
  	        <DefaultRolloverStrategy max="20" />
-    	</RollingFile>
+    	</RollingFile>-->
     </Appenders>
     
     <Loggers>
         <Logger name="cool" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
-            <AppenderRef ref="RollingFileAppender"/>
+             <!--<AppenderRef ref="RollingFileAppender"/>-->
         </Logger>
         <Root level="debug">
             <AppenderRef ref="ConsoleAppender" />
-            <AppenderRef ref="RollingFileAppender"/>
+             <!--<AppenderRef ref="RollingFileAppender"/>-->
         </Root>
     </Loggers>
 </Configuration>
