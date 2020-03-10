@@ -1,95 +1,37 @@
 package com.safetynet.business;
 
+import com.safetynet.model.Person;
+
 public class Habitant {
 
-	String firstName;
-	String lastName;
-	String phone;
-	int age;
-	String[] medications;
-	String[] allergie;
-	String station;
-	String address;
+	private Person person;
+	private int station;
 
-	public Habitant(String firstName, String lastName, String phone, int age, String[] medications, String[] allergie,
-			String station, String address) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phone = phone;
-		this.age = age;
-		this.medications = medications;
-		this.allergie = allergie;
+	public Habitant(Person person, int station) {
+		super();
+		this.person = person;
 		this.station = station;
-		this.address = address;
 	}
 
-	public String getAddress() {
-		return address;
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String[] getMedications() {
-		return medications;
-	}
-
-	public void setMedications(String[] medications) {
-		this.medications = medications;
-	}
-
-	public String[] getAllergie() {
-		return allergie;
-	}
-
-	public void setAllergie(String[] allergie) {
-		this.allergie = allergie;
-	}
-
-	public String getStation() {
+	public int getStation() {
 		return station;
 	}
 
-	public void setStation(String station) {
+	public void setStation(int station) {
 		this.station = station;
 	}
 
 	@Override
 	public String toString() {
-		return "Habitants [firstName=" + firstName + ", LastName=" + lastName + ", phone=" + phone + ", age=" + age
-				+ ", medications=" + medications + ", allergie=" + allergie + ", station=" + station + "]";
+		return "Habitant [person=" + person + ", station=" + station + "]";
 	}
+
 }

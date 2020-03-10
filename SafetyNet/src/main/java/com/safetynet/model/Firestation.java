@@ -1,38 +1,32 @@
 package com.safetynet.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Firestation {
 
-	private String address;
+	private int station;
+	private Set<String> addresses = new HashSet<>();
 
-	private String station;
-
-	public Firestation() {
-	}
-
-	public Firestation(String address, String station) {
-		this.address = address;
+	public Firestation(int station) {
 		this.station = station;
 	}
 
-	public String getAddress() {
-		return address;
+	public Set<String> getAddresses() {
+		return addresses;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getStation() {
+	public int getStation() {
 		return station;
 	}
 
-	public void setStation(String station) {
-		this.station = station;
+	public void addAddress(String newAddress) {
+		addresses.add(newAddress);
 	}
 
 	@Override
 	public String toString() {
-		return "Firestations [address=" + address + ", station=" + station + "]";
+		return "Firestation [station=" + station + ", addresses=" + addresses + "]";
 	}
 
 }

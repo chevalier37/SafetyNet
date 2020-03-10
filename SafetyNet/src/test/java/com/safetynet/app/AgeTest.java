@@ -22,27 +22,10 @@ public class AgeTest {
 	List<Medicalrecord> listMedicalrecordsTest = ListTesting.listMedicalRecordTest();
 
 	@Test
-	@DisplayName("calcul age")
-	public void ageCalcul() throws ParseException {
-		int age = Age.calculAge("01/01/2000");
-		assertEquals(20, age);
-	}
-
-	@Test
 	@DisplayName("is majeur")
 	public void isMajeurTest() throws ParseException {
 		boolean isMajeur = Age.isAdult("01/01/2000");
 		assertEquals(true, isMajeur);
-	}
-
-	@Test
-	@DisplayName("Nombre adultes")
-	public void nbrAdult() throws ParseException {
-
-		int nbradult = Age.nbrAdult(listPersonsTest, listMedicalrecordsTest);
-		int nbradultExpected = 2;
-
-		assertEquals(nbradult, nbradultExpected);
 	}
 
 }

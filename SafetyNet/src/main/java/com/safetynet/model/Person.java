@@ -18,20 +18,8 @@ public class Person {
 
 	private Medicalrecord medicalRecord;
 
-	public Person() {
-	}
-
-	public Medicalrecord getMedicalRecord() {
-		return medicalRecord;
-	}
-
-	public void setMedicalRecord(Medicalrecord medicalRecord) {
-		this.medicalRecord = medicalRecord;
-	}
-
 	public Person(String firstName, String lastName, String address, String city, String zip, String phone,
-			String email, Medicalrecord medicalRecord) {
-		super();
+			String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -39,6 +27,13 @@ public class Person {
 		this.zip = zip;
 		this.phone = phone;
 		this.email = email;
+	}
+
+	public Medicalrecord getMedicalRecord() {
+		return medicalRecord;
+	}
+
+	public void setMedicalRecord(Medicalrecord medicalRecord) {
 		this.medicalRecord = medicalRecord;
 	}
 

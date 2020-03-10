@@ -1,40 +1,48 @@
 package com.safetynet.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class SafetyNetModel {
 
 	private List<Person> persons;
+	private Map<Integer, Firestation> firestations;
+	private Map<String, List<Person>> foyers;
 
-	private List<Firestation> firestations;
-
-	private List<Medicalrecord> medicalrecords;
-
-	public SafetyNetModel() {
-	}
-
-	public SafetyNetModel(List<Person> persons, List<Firestation> firestations, List<Medicalrecord> medicalrecords) {
+	public SafetyNetModel(List<Person> persons, Map<Integer, Firestation> firestations,
+			Map<String, List<Person>> foyer) {
 		this.persons = persons;
 		this.firestations = firestations;
-		this.medicalrecords = medicalrecords;
+		this.foyers = foyer;
 	}
 
 	public List<Person> getPersons() {
 		return persons;
 	}
 
-	public List<Medicalrecord> getMedicalrecords() {
-		return medicalrecords;
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 
-	public List<Firestation> getFirestations() {
+	public Map<Integer, Firestation> getFirestations() {
 		return firestations;
+	}
+
+	public void setFirestations(Map<Integer, Firestation> firestations) {
+		this.firestations = firestations;
+	}
+
+	public Map<String, List<Person>> getFoyer() {
+		return foyers;
+	}
+
+	public void setFoyer(Map<String, List<Person>> foyer) {
+		this.foyers = foyer;
 	}
 
 	@Override
 	public String toString() {
-		return "SafetyNetModel [persons=" + persons + ", medicalrecord=" + medicalrecords + ", firestations="
-				+ firestations + "]";
+		return "SafetyNetModel [persons=" + persons + ", firestations=" + firestations + ", foyer=" + foyers + "]";
 	}
 
 }

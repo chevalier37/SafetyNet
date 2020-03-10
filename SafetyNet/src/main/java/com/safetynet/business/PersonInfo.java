@@ -3,13 +3,13 @@ package com.safetynet.business;
 import java.util.Arrays;
 
 public class PersonInfo {
-	String firstName;
-	String lastName;
-	String address;
-	String mail;
-	int age;
-	String[] medications;
-	String[] allergie;
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String mail;
+	private int age;
+	private String[] medications;
+	private String[] allergie;
 
 	public PersonInfo(String firstName, String lastName, String address, String mail, int age, String[] medications,
 			String[] allergie) {

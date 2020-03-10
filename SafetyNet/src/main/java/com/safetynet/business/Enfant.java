@@ -5,48 +5,35 @@ import java.util.List;
 import com.safetynet.model.Person;
 
 public class Enfant {
-	
-	String firstName;
-	String lastName;
-	int age;
-	List<Person> membreFoyer;
-	
-	public Enfant(String firstName, String lastName, int age, List<Person> membreFoyer) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
+
+	private Person person;
+	private List<Person> membreFoyer;
+
+	public Enfant(Person person, List<Person> membreFoyer) {
+		super();
+		this.person = person;
 		this.membreFoyer = membreFoyer;
 	}
-	
-	public String getFirstName() {
-		return firstName;
+
+	public Person getPerson() {
+		return person;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
+
 	public List<Person> getMembreFoyer() {
 		return membreFoyer;
 	}
+
 	public void setMembreFoyer(List<Person> membreFoyer) {
 		this.membreFoyer = membreFoyer;
 	}
 
 	@Override
 	public String toString() {
-		return "Enfants [firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", membreFoyer="
-				+ membreFoyer + "]";
+		return "Enfant [person=" + person + ", membreFoyer=" + membreFoyer + "]";
 	}
 
 }
