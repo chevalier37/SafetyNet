@@ -14,11 +14,11 @@ import com.safetynet.model.SafetyNetModel;
 @SpringBootApplication
 public class SafetyNetApplication {
 
+	private static String file = "./src/main/resources/data.json";
+
 	public static void main(String[] args) {
 		SpringApplication.run(SafetyNetApplication.class, args);
 	}
-
-	private static String file = "./src/main/resources/data.json";
 
 	@Bean
 	public SafetyNetModel loadModel() throws IOException {

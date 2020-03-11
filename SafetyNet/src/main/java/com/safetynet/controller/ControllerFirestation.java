@@ -1,12 +1,8 @@
 package com.safetynet.controller;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.safetynet.business.Age;
+import com.safetynet.business.FirestationBusiness;
 import com.safetynet.business.Habitant;
 import com.safetynet.business.ListPersonStation;
 import com.safetynet.model.Firestation;
@@ -53,26 +49,14 @@ public class ControllerFirestation {
 
 	@PutMapping("/firestation")
 	@ResponseBody
-	public SafetyNetModel updatePerson(@RequestBody Map<?, ?> firestation) {
+	public SafetyNetModel updateFirestation(@RequestBody Map<?, ?> firestation) {
 
 		int stationNumber = Integer.parseInt(firestation.get("station").toString());
 		String stationAdress = firestation.get("address").toString();
 
 		Map<Integer, Firestation> getfirestations = safetyModel.getFirestations();
 
-		Set cles = getfirestations.keySet();
-		Iterator it = cles.iterator();
-
-		while (it.hasNext()) {
-			Object station = it.next();
-			Firestation fire = getfirestations.get(station);
-			if (fire.getAddresses().contains(stationAdress)) {
-				fire.getAddresses().remove(stationAdress);
-			}
-			if (fire.getStation() == stationNumber) {
-				fire.addAddress(stationAdress);
-			}
-		}
+		getfirestations = FirestationBusiness.updateFirestationBusiness(stationNumber, stationAdress, getfirestations);
 
 		logger.info("Request = @PutMapping(\"/firestation\") + @RequestBody = {}", firestation);
 		logger.info("Response {}", safetyModel);
@@ -89,16 +73,7 @@ public class ControllerFirestation {
 
 		Map<Integer, Firestation> getfirestations = safetyModel.getFirestations();
 
-		Set cles = getfirestations.keySet();
-		Iterator it = cles.iterator();
-
-		while (it.hasNext()) {
-			Object station = it.next();
-			Firestation fire = getfirestations.get(station);
-			if (fire.getAddresses().contains(stationAdress)) {
-				fire.getAddresses().remove(stationAdress);
-			}
-		}
+		getfirestations = FirestationBusiness.deleteFirestationBusiness(stationNumber, stationAdress, getfirestations);
 
 		logger.info("Request = @DeleteMapping(\"/firestation\") + @RequestParam = {}", firestation);
 		logger.info("Response {}", safetyModel);
@@ -112,40 +87,12 @@ public class ControllerFirestation {
 
 		Map<Integer, Firestation> getfirestations = safetyModel.getFirestations();
 		List<Person> listSafetyPerson = safetyModel.getPersons();
-		List<Person> listPersonResult = new ArrayList<Person>();
-		Set<String> addresses = new HashSet<String>();
 
-		Set cles = getfirestations.keySet();
-		Iterator it = cles.iterator();
-
-		while (it.hasNext()) {
-			Object station = it.next();
-			Firestation fire = getfirestations.get(Integer.parseInt(stationNumber));
-
-			if (fire.getStation() == Integer.parseInt(stationNumber)) {
-				addresses = fire.getAddresses();
-			}
-		}
-
-		for (Person person : listSafetyPerson) {
-			if (addresses.contains(person.getAddress())) {
-				listPersonResult.add(person);
-			}
-		}
-
-		int nbrAdult = 0;
-		for (Person person : listPersonResult) {
-			if (Age.isAdult(person.getMedicalRecord().getBirthdate())) {
-				nbrAdult++;
-			}
-		}
-
-		int nbrChild = listPersonResult.size() - nbrAdult;
-
-		ListPersonStation listpersonStation = new ListPersonStation(listPersonResult, nbrAdult, nbrChild);
+		ListPersonStation listpersonStation = FirestationBusiness.stationNumberBusiness(stationNumber, getfirestations,
+				listSafetyPerson);
 
 		logger.info("Request = @GetMapping(\"/firestation\" + @RequestParam = {}", stationNumber);
-		logger.info("Response {}", listPersonResult);
+		logger.info("Response {}", listpersonStation);
 
 		return listpersonStation;
 
@@ -156,26 +103,9 @@ public class ControllerFirestation {
 	public List<Habitant> fire(@RequestParam String address) throws ParseException {
 
 		List<Person> listPerson = safetyModel.getPersons();
-		List<Habitant> listHabitant = new ArrayList<Habitant>();
 		Map<Integer, Firestation> getfirestations = safetyModel.getFirestations();
 
-		Set cles = getfirestations.keySet();
-		Iterator it = cles.iterator();
-
-		while (it.hasNext()) {
-			Object station = it.next();
-			Firestation fire = getfirestations.get(station);
-
-			if (fire.getAddresses().contains(address)) {
-				int stationNum = fire.getStation();
-				for (Person person : listPerson) {
-					if (person.getAddress().equals(address)) {
-						Habitant habitant = new Habitant(person, stationNum);
-						listHabitant.add(habitant);
-					}
-				}
-			}
-		}
+		List<Habitant> listHabitant = FirestationBusiness.fireBusiness(address, listPerson, getfirestations);
 
 		logger.info("Request = @GetMapping(\"/fire\" + @RequestParam = {}", address);
 		logger.info("Response = {}", listHabitant);
@@ -189,34 +119,8 @@ public class ControllerFirestation {
 
 		Map<Integer, Firestation> getfirestations = safetyModel.getFirestations();
 		Map<String, List<Person>> getFoyers = safetyModel.getFoyer();
-		List<Person> listSafetyPerson = safetyModel.getPersons();
-		List<Person> listPersonResult = new ArrayList<Person>();
-		Set<String> addresses = new HashSet<String>();
 
-		Set cles = getfirestations.keySet();
-		Iterator it = cles.iterator();
-
-		while (it.hasNext()) {
-			Object station = it.next();
-			Firestation fire = getfirestations.get(Integer.parseInt(stations));
-
-			if (fire.getStation() == Integer.parseInt(stations)) {
-				addresses = fire.getAddresses();
-			}
-		}
-
-		Set key = getFoyers.keySet();
-		Iterator iter = key.iterator();
-		while (iter.hasNext()) {
-			Object num = iter.next();
-			List<Person> persons = getFoyers.get(num);
-
-			for (Person person : persons) {
-				if (addresses.contains(person.getAddress())) {
-					listPersonResult.add(person);
-				}
-			}
-		}
+		List<Person> listPersonResult = FirestationBusiness.floodBusiness(stations, getfirestations, getFoyers);
 
 		logger.info("Request = @GetMapping(\"/flood/stations\" + @RequestParam = {}", stations);
 		logger.info("Response = {}", listPersonResult);
