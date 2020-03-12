@@ -26,4 +26,11 @@ public class AgeTest {
 		assertEquals(true, isMajeur);
 	}
 
+	@Test
+	@DisplayName("calcul age")
+	public void calculAgeTest() throws ParseException {
+		int age = Age.calculAge(birthdate1);
+		assertEquals(35, age);
+	}
+
 }

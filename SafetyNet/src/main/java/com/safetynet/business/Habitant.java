@@ -4,13 +4,22 @@ import com.safetynet.model.Person;
 
 public class Habitant {
 
+	private int age;
 	private Person person;
 	private int station;
 
-	public Habitant(Person person, int station) {
-		super();
+	public Habitant(int age, Person person, int station) {
 		this.person = person;
 		this.station = station;
+		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public Person getPerson() {

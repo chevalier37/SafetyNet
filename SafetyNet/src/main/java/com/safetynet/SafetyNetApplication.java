@@ -12,6 +12,7 @@ import com.safetynet.business.ReadFile;
 import com.safetynet.model.SafetyNetModel;
 
 @SpringBootApplication
+
 public class SafetyNetApplication {
 
 	private static String file = "./src/main/resources/data.json";

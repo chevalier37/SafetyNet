@@ -32,6 +32,20 @@ public class Age {
 		}
 	}
 
+	public static int calculAge(LocalDate birthD) throws ParseException {
+		int yearDiff = yearDiff(birthD);
+		int monthDiff = monthDiff(birthD);
+		int dayDiff = dayDiff(birthD);
+
+		if (monthDiff >= 0 || monthDiff == 0 && dayDiff >= 0) {
+			logger.debug("age = ", yearDiff);
+			return yearDiff;
+		} else {
+			logger.debug("age = ", yearDiff - 1);
+			return yearDiff - 1;
+		}
+	}
+
 	private static int yearDiff(LocalDate birthD) throws ParseException {
 		int birth = birthD.getYear();
 		return today.get(Calendar.YEAR) - birth;

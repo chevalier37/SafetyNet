@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.safetynet.business.Enfant;
 import com.safetynet.business.PersonBusiness;
+import com.safetynet.business.PersonInfo;
 import com.safetynet.model.Firestation;
 import com.safetynet.model.Person;
 import com.safetynet.model.SafetyNetModel;
@@ -109,7 +110,7 @@ public class ControllerPerson {
 
 	@GetMapping("/personInfo")
 	@ResponseBody
-	public List<Person> personInfo(@RequestParam String firstName, String lastName) throws ParseException {
+	public List<PersonInfo> personInfo(@RequestParam String firstName, String lastName) throws ParseException {
 
 		List<Person> listPerson = safetyModel.getPersons();
 

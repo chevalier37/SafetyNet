@@ -1,25 +1,54 @@
 package com.safetynet.business;
 
-import java.util.Arrays;
+import com.safetynet.model.Medicalrecord;
 
 public class PersonInfo {
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String mail;
-	private int age;
-	private String[] medications;
-	private String[] allergie;
 
-	public PersonInfo(String firstName, String lastName, String address, String mail, int age, String[] medications,
-			String[] allergie) {
+	private String firstName;
+
+	private String lastName;
+
+	private int age;
+
+	private String address;
+
+	private String city;
+
+	private String zip;
+
+	private String phone;
+
+	private String email;
+
+	private Medicalrecord medicalRecord;
+
+	public PersonInfo(String firstName, String lastName, int age, String address, String city, String zip, String phone,
+			String email, Medicalrecord medicalRecord) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
-		this.mail = mail;
 		this.age = age;
-		this.medications = medications;
-		this.allergie = allergie;
+		this.address = address;
+		this.city = city;
+		this.zip = zip;
+		this.phone = phone;
+		this.email = email;
+		this.medicalRecord = medicalRecord;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Medicalrecord getMedicalRecord() {
+		return medicalRecord;
+	}
+
+	public void setMedicalRecord(Medicalrecord medicalRecord) {
+		this.medicalRecord = medicalRecord;
 	}
 
 	public String getFirstName() {
@@ -46,43 +75,43 @@ public class PersonInfo {
 		this.address = address;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getCity() {
+		return city;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public int getAge() {
-		return age;
+	public String getZip() {
+		return zip;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
-	public String[] getMedications() {
-		return medications;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setMedications(String[] medications) {
-		this.medications = medications;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String[] getAllergie() {
-		return allergie;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAllergie(String[] allergie) {
-		this.allergie = allergie;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "PersonInfo [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", mail="
-				+ mail + ", age=" + age + ", medications=" + Arrays.toString(medications) + ", allergie="
-				+ Arrays.toString(allergie) + "]";
+		return "PersonInfo [firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", address=" + address
+				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + ", medicalRecord="
+				+ medicalRecord + "]";
 	}
 
 }

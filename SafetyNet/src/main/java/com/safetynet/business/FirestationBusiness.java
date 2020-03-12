@@ -103,7 +103,8 @@ public class FirestationBusiness {
 				int stationNum = fire.getStation();
 				for (Person person : listPerson) {
 					if (person.getAddress().equals(address)) {
-						Habitant habitant = new Habitant(person, stationNum);
+						int age = Age.calculAge(person.getMedicalRecord().getBirthdate());
+						Habitant habitant = new Habitant(age, person, stationNum);
 						listHabitant.add(habitant);
 					}
 				}

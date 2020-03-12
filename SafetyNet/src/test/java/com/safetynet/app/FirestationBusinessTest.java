@@ -210,7 +210,8 @@ public class FirestationBusinessTest {
 				int stationNum = fire.getStation();
 				for (Person person : listPerson) {
 					if (person.getAddress().equals("15010 Culver St")) {
-						Habitant habitant = new Habitant(person, stationNum);
+						int age = Age.calculAge(person.getMedicalRecord().getBirthdate());
+						Habitant habitant = new Habitant(age, person, stationNum);
 						listHabitant.add(habitant);
 					}
 				}
