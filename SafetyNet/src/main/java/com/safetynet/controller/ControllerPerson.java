@@ -93,7 +93,7 @@ public class ControllerPerson {
 		Map<String, List<Person>> foyers = safetyModel.getFoyer();
 		List<Enfant> childlist = new ArrayList<Enfant>();
 
-		childlist = PersonBusiness.childAlertBusiness(foyers, childlist, address);
+		childlist = PersonBusiness.getChildList(foyers, childlist, address);
 
 		return childlist;
 	}

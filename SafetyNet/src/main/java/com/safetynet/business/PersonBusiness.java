@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import com.safetynet.model.Firestation;
@@ -42,16 +43,17 @@ public class PersonBusiness {
 		return listPersons;
 	}
 
-	public static List<Enfant> childAlertBusiness(Map<String, List<Person>> foyers, List<Enfant> childlist,
+	public static List<Enfant> getChildList(Map<String, List<Person>> foyers, List<Enfant> childlist,
 			String address) throws ParseException {
-
-		Set cles = foyers.keySet();
-		Iterator it = cles.iterator();
-		while (it.hasNext()) {
-			Object foyerNum = it.next();
-			List<Person> listFoyers = foyers.get(foyerNum);
+		foyers.entrySet();
+		for (Entry<String, List<Person>> entry : foyers.entrySet()) {
+			String foyerAddress = entry.getKey();
+			if (!address.equals(foyerAddress)) {
+				continue;
+			}
+			List<Person> listFoyers = entry.getValue();
 			for (Person person : listFoyers) {
-				if (!Age.isAdult(person.getMedicalRecord().getBirthdate()) && person.getAddress().equals(address)) {
+				if (!Age.isAdult(person.getMedicalRecord().getBirthdate())) {
 					int age = Age.calculAge(person.getMedicalRecord().getBirthdate());
 					Enfant child = new Enfant(age, person, listFoyers);
 					childlist.add(child);
